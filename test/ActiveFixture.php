@@ -1,12 +1,12 @@
 <?php
 
-namespace yii\boost\test;
+namespace pvsaintpe\boost\test;
 
 use yii\test\ActiveFixture as BaseActiveFixture;
 
 /**
  * Class ActiveFixture
- * @package yii\boost\test
+ * @package pvsaintpe\boost\test
  */
 class ActiveFixture extends BaseActiveFixture
 {
