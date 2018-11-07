@@ -8,4 +8,4 @@ require(__DIR__ . '/../vendor/autoload.php');
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
 Yii::setAlias('@tests', __DIR__);
-Yii::setAlias('@yii/boost', dirname(__DIR__));
+Yii::setAlias('@pvsaintpe/boost', dirname(__DIR__));
