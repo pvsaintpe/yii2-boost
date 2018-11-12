@@ -9,6 +9,7 @@ use ReflectionClass;
 use yii\validators\RequiredValidator;
 use Yii;
 use yii\db\Expression as YiiDbExpression;
+use yii\base\InvalidArgumentException;
 
 /**
  * @property string $titleText
@@ -238,5 +239,28 @@ class ActiveRecord extends BaseActiveRecord
             }
         }
         return $validators;
+    }
+
+    /**
+     * "One of" functionality
+     * @param string $name
+     * @param array $conditions
+     * @return static
+     * @throws InvalidArgumentException
+     */
+    public function oneOf($name, $conditions)
+    {
+        if ($conditions) {
+            /** @var static[] $models */
+            foreach ($this->{$name} as $model) {
+                foreach ($conditions as $attribute => $value) {
+                    if (!isset($model->{$attribute}) || $model->{$attribute} != $value) {
+                        continue 2;
+                    }
+                }
+                return $model;
+            }
+        }
+        throw new InvalidArgumentException('Invalid conditions.');
     }
 }
