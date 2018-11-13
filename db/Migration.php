@@ -8,13 +8,19 @@ use yii\db\Schema;
 
 class Migration extends BaseMigration
 {
-
     use SchemaBuilderTrait;
 
     const RESTRICT = 'RESTRICT';
     const CASCADE = 'CASCADE';
     const SET_NULL = 'SET NULL';
     const NO_ACTION = 'NO ACTION';
+    const SET_DEFAULT = 'SET DEFAULT';
+
+    const PRIMARY_KEY = 1;
+    const UNIQUE_KEY = 2;
+    const FOREIGN_KEY = 3;
+    const INDEX = 4;
+    const KEY = 5;
 
     /**
      * @inheritdoc

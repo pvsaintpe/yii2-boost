@@ -248,7 +248,7 @@ class ActiveRecord extends BaseActiveRecord
      * @return static
      * @throws InvalidArgumentException
      */
-    public function oneOf($name, $conditions)
+    protected function oneOf($name, $conditions)
     {
         if ($conditions) {
             /** @var static[] $models */
