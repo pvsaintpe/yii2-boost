@@ -16,7 +16,6 @@ use yii\base\InvalidArgumentException;
  */
 class ActiveRecord extends BaseActiveRecord
 {
-
     use ModelDebugTrait;
 
     const TITLE_SEPARATOR = ' ';
@@ -30,6 +29,31 @@ class ActiveRecord extends BaseActiveRecord
     {
         $command = static::getDb()->createCommand();
         $command->batchInsert(static::tableName(), $columns, $rows);
+        return $command->execute();
+    }
+
+    /**
+     * Example
+     *
+     * ```php
+     * User::batchUpdate([
+     *      'name' => ['Alice', 'Bob'],
+     *      'age' => '18'
+     * ], [
+     *      'id' => [1, 2, 3],
+     *      'enabled' => '1'
+     * ]);
+     * ```
+     *
+     * @param array $columns
+     * @param string|array $condition
+     * @return int
+     * @throws
+     */
+    public static function batchUpdate(array $columns, $condition)
+    {
+        $command = static::getDb()->createCommand();
+        $command->batchUpdate(static::tableName(), $columns, $condition);
         return $command->execute();
     }
 
