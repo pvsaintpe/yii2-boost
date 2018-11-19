@@ -2,6 +2,9 @@
 
 namespace pvsaintpe\boost\db;
 
+use pvsaintpe\db\components\Command;
+use pvsaintpe\db\components\Connection;
+use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord as BaseActiveRecord;
 use yii\helpers\Inflector;
 use pvsaintpe\boost\base\ModelDebugTrait;
@@ -33,6 +36,17 @@ class ActiveRecord extends BaseActiveRecord
     }
 
     /**
+     * Returns the database connection used by this AR class.
+     * By default, the "db" application component is used as the database connection.
+     * You may override this method if you want to use a different database connection.
+     * @return Connection the database connection used by this AR class.
+     */
+    public static function getDb()
+    {
+        return Yii::$app->getDb();
+    }
+
+    /**
      * Example
      *
      * ```php
@@ -53,6 +67,11 @@ class ActiveRecord extends BaseActiveRecord
     public static function batchUpdate(array $columns, $condition)
     {
         $command = static::getDb()->createCommand();
+        if (!$command instanceof Command) {
+            throw new InvalidConfigException(Yii::t('errors', 'Component Command must be inherited from the class: {class}.', [
+                'class' => Command::class
+            ]));
+        }
         $command->batchUpdate(static::tableName(), $columns, $condition);
         return $command->execute();
     }
@@ -176,6 +195,7 @@ class ActiveRecord extends BaseActiveRecord
 
     /**
      * @return string
+     * @throws \ReflectionException
      */
     public static function classShortName()
     {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "358cecb08361745e55f6a23e090469e8",
+    "content-hash": "18f9819df905800b1ce1553e28756f7a",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -351,6 +351,55 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
+            "name": "pvsaintpe/yii2-db-plus",
+            "version": "2.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pvsaintpe/yii2-db-plus.git",
+                "reference": "8a3c9c29d146513a11d3465b0a802d3960cd8b72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-db-plus/zipball/8a3c9c29d146513a11d3465b0a802d3960cd8b72",
+                "reference": "8a3c9c29d146513a11d3465b0a802d3960cd8b72",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "pvsaintpe/yii2-boost": "*",
+                "yiisoft/yii2": "2.0.15.1"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "pvsaintpe\\db\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Veselov",
+                    "email": "pvsaintpe@icloud.com"
+                }
+            ],
+            "description": "Package",
+            "keywords": [
+                "code generator",
+                "gii",
+                "yii2"
+            ],
+            "time": "2018-11-15T14:14:06+00:00"
         },
         {
             "name": "yiisoft/yii2",
