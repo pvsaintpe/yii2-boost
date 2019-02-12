@@ -297,7 +297,7 @@ class ActiveRecord extends BaseActiveRecord
         $method = 'get' . ucfirst($name);
         if (method_exists($this, $method)) {
             /** @var \yii\db\ActiveQuery $q */
-            $q = call_user_func_array($method, [$this]);
+            $q = call_user_func([$this, $method]);
             $q->andOnCondition($conditions);
             return $q->one();
         }
