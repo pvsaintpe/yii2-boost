@@ -22,7 +22,7 @@ trait SchemaBuilderTrait
      */
     public function createdAtShortcut()
     {
-        return $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP');
+        return $this->timestamp()->notNull()->defaultExpression('current_timestamp()');
     }
 
     /**
@@ -30,7 +30,7 @@ trait SchemaBuilderTrait
      */
     public function updatedAtShortcut()
     {
-        return $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP');
+        return $this->timestamp()->notNull()->defaultExpression('current_timestamp() ON UPDATE current_timestamp()');
     }
 
     /**

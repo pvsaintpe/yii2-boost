@@ -289,22 +289,18 @@ class ActiveRecord extends BaseActiveRecord
      * "One of" functionality
      * @param string $name
      * @param array $conditions
-     * @return static
+     * @return array|null|ActiveRecord
      * @throws InvalidArgumentException
      */
     protected function oneOf($name, $conditions)
     {
-        if ($conditions) {
-            /** @var static[] $models */
-            foreach ($this->{$name} as $model) {
-                foreach ($conditions as $attribute => $value) {
-                    if (!isset($model->{$attribute}) || $model->{$attribute} != $value) {
-                        continue 2;
-                    }
-                }
-                return $model;
-            }
+        $method = 'get' . ucfirst($name);
+        if (method_exists($this, $method)) {
+            /** @var \yii\db\ActiveQuery $q */
+            $q = call_user_func([$this, $method]);
+            $q->andOnCondition($conditions);
+            return $q->one();
         }
-        throw new InvalidArgumentException('Invalid conditions.');
+        throw new InvalidArgumentException(Yii::t('error', 'Method {method} not found.', compact('method')));
     }
 }
